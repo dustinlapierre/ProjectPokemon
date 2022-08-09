@@ -75,6 +75,97 @@ html, body
     margin-bottom: 1rem;
 }
 
+.fa-code
+{
+    color: #e54d26;
+}
+.fa-bold
+{
+    color: #563d7c;
+}
+.fa-css3
+{
+    color: #2163af;
+}
+
+.fa-code, .fa-bold, .fa-css3
+{
+    font-size: 4em;
+    margin: 1rem;
+}
+
+.social a
+{
+    font-size: 4.5em;
+    padding: 3rem;
+}
+.fa-twitter 
+{
+    color: #00aced;
+}
+.fa-github 
+{
+    color: #333;
+}
+.fa-google 
+{
+    color: #dd4b39;
+}
+
+.fa-twitter, .fa-github, .fa-google 
+{
+    transition: color 0.5s;
+}
+
+.fa-twitter:hover 
+{
+    color: #2163af;
+}
+.fa-github:hover 
+{
+    color: #000;
+}
+.fa-google:hover
+{
+    color: #c70a00;
+}
+
+.fa-twitter:hover, .fa-github:hover, .fa-google:hover 
+{
+    animation: wiggle 1s 1 normal;
+}
+
+@keyframes wiggle 
+{
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+
+    15% {
+        transform: rotateZ(-15deg);
+    }
+
+    20% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    30% {
+        transform: rotateZ(6deg);
+    }
+
+    35% {
+        transform: rotateZ(-4deg);
+    }
+
+    40%, 100% {
+        transform: rotateZ(0);
+    }
+}
+
 /*---Media Queries --*/
 @media (max-width: 992px) {
 }
