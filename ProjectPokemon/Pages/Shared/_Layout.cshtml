@@ -14,6 +14,38 @@
     <link rel="stylesheet" href="~/ProjectPokemon.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-page="Index">
+                <img src="~/images/pokeball_logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                PRO-PKMN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!--ml-auto will push elements to the right-->
+                <div class="navbar-nav ms-auto">
+                    <a is-active-page class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                    <a is-active-page class="nav-link" asp-area="" asp-page="/Pokedex">Pokedex</a>
+                    <a is-active-page class="nav-link" asp-area="" asp-page="/About">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     @RenderBody()
+    <!--- Footer -->
+    <footer>
+        <div class="container-fluid">
+            <div class="row padding text-center">
+                <div class="col-12">
+                    <div class="lead text-decoration-none light">
+                        Project Pokemon - Created by Dustin Lapierre 2022
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

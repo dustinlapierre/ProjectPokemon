@@ -4,27 +4,6 @@
     ViewData["Title"] = "Home page";
 }
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" asp-area="" asp-page="Index">
-            <img src="~/images/pokeball_logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-            PRO-PKMN
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <!--ml-auto will push elements to the right-->
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link active" asp-area="" asp-page="/Index">Home</a>
-                <a class="nav-link" asp-area="" asp-page="/Pokedex">Pokedex</a>
-                <a class="nav-link" asp-area="" asp-page="/About">About</a>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!--- Image Slider -->
 <div id="slides" class="carousel slide" data-bs-ride="carousel">
     <ul class="carousel-indicators">
@@ -38,8 +17,8 @@
             <div class="carousel-caption">
                 <h1 class="display-2">Project Pokemon</h1>
                 <h3>A competitive Pokemon aid</h3>
-                <button type="button" class="btn btn-outline-light btn-lg">Random</button>
-                <button type="button" class="btn btn-primary btn-lg">PokeDex</button>
+                <button type="button" class="btn btn-light btn-lg">Random</button>
+                <a type="button" class="btn btn-primary btn-lg" asp-area="" asp-page="/Pokedex">PokeDex</a>
             </div>
         </div>
         <div class="carousel-item">
@@ -62,7 +41,7 @@
             </p>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
-            <button type="button" class="btn btn-outline-secondary btn-lg">Source Code</button>
+            <a href="https://github.com/dustinlapierre/ProjectPokemon" class="btn btn-outline-secondary btn-lg">Source Code</a>
         </div>
     </div>
 </div>
@@ -182,21 +161,8 @@
         </div>
         <div class="col-12 social padding">
             <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/dustinlapierre/ProjectPokemon"><i class="fab fa-github"></i></a>
             <a href="#"><i class="fab fa-google"></i></a>
         </div>
     </div>
 </div>
-
-<!--- Footer -->
-<footer>
-    <div class="container-fluid">
-        <div class="row padding text-center">
-            <div class="col-12">
-                <div class="lead text-decoration-none light">
-                    Project Pokemon - Created by Dustin Lapierre 2022
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>

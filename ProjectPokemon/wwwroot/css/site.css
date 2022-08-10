@@ -54,6 +54,15 @@ html, body
     background-color: #c70a00;
     border: 0;
 }
+.btn-light
+{
+    border: 0;
+}
+.btn-light:hover 
+{
+    background-color: #CCC;
+    border: 0;
+}
 .padding
 {
     padding-bottom: 2rem;
