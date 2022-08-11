@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using PokeApiLibrary;
 
 namespace ProjectPokemon.Pages
 {
@@ -14,7 +15,9 @@ namespace ProjectPokemon.Pages
 
         public void OnGet()
         {
-
+            var pokemon = PokeApi.GetPokemon(2).Result;
+            Console.WriteLine(pokemon.Name);
+            Console.WriteLine(pokemon.Id);
         }
     }
 }
