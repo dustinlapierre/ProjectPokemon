@@ -43,5 +43,24 @@ public static class PokeApi
             return pokemonModel;
         }
     }
+
+    public static async Task<List<string>> GetAllPokemonNames()
+    {
+        using (var client = new HttpClient())
+        {
+            var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon?limit=9999");
+            var result = await client.GetAsync(endpoint);
+
+            using(JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
+            {
+                var pokemonNameList = new List<string>();
+                foreach (var element in jsonDocument.RootElement.GetProperty("results").EnumerateArray())
+                {
+                    pokemonNameList.Add(element.GetProperty("name").ToString());
+                }
+                return pokemonNameList;
+            }
+        }
+    }
 }
 

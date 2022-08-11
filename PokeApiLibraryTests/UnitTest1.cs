@@ -32,4 +32,18 @@ public class UnitTest1
         var result = PokeApi.GetPokemon("SQUIRTLE").Result;
         Assert.Equal(7, result.Id);
     }
+
+    [Fact]
+    public void PokeApiLibrary_GetAllPokemonNames_ReturnsSuccess()
+    {
+        var result = PokeApi.GetAllPokemonNames().Result;
+        //test that list is populated
+        Assert.True(result.Count > 0);
+        //test first
+        Assert.Equal("bulbasaur", result[0]);
+        //test last
+        Assert.Equal("enamorus-therian", result[result.Count-1]);
+        //test middle
+        Assert.Equal("oshawott", result[500]);
+    }
 }
