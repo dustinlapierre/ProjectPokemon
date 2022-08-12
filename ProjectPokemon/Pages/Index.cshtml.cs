@@ -15,9 +15,21 @@ namespace ProjectPokemon.Pages
 
         public void OnGet()
         {
-            var pokemon = PokeApi.GetPokemon(2).Result;
-            Console.WriteLine(pokemon.Name);
-            Console.WriteLine(pokemon.Id);
+            var poke = PokeApi.GetPokemon("bruxish").Result;
+            Console.WriteLine(poke.Name);
+            Console.WriteLine(poke.Id);
+            foreach(var a in poke.Abilities)
+            {
+                Console.WriteLine(a.Ability.Name);
+            }
+            foreach (var a in poke.Stats)
+            {
+                Console.WriteLine($"{a.Stat.Name}: {a.BaseStat}");
+            }
+            foreach (var a in poke.Types)
+            {
+                Console.WriteLine($"{a.Type.Name}");
+            }
         }
     }
 }

@@ -11,5 +11,8 @@ public class PokemonModel
 {
     public string Name { get; set; }
     public int Id { get; set; }
+    public List<AbilityEntry> Abilities { get; set; }
+    public List<StatEntry> Stats { get; set; }
+    public List<TypeEntry> Types { get; set; }
 }
 
