@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PokeApiLibrary.Models;
@@ -14,5 +15,6 @@ public class PokemonModel
     public List<AbilityEntry> Abilities { get; set; }
     public List<StatEntry> Stats { get; set; }
     public List<TypeEntry> Types { get; set; }
+    public SpriteEntry Sprites { get; set; }
 }
 

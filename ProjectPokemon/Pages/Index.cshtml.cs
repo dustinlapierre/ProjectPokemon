@@ -18,7 +18,8 @@ namespace ProjectPokemon.Pages
             var poke = PokeApi.GetPokemon("bruxish").Result;
             Console.WriteLine(poke.Name);
             Console.WriteLine(poke.Id);
-            foreach(var a in poke.Abilities)
+            Console.WriteLine(poke.Sprites.Other.OfficialArtwork.FrontDefault);
+            foreach (var a in poke.Abilities)
             {
                 Console.WriteLine(a.Ability.Name);
             }
