@@ -189,6 +189,12 @@ footer
     padding-top: 2rem;
 }
 
+.pokedex-searchbar 
+{
+    width: 75%;
+    background-color: #E4000F;
+}
+
 /*---Media Queries --*/
 @media (max-width: 992px) 
 {
@@ -228,6 +234,14 @@ footer
     {
         font-size: 2.5em;
         padding: 1.2rem;
+    }
+    .pokedex-img 
+    {
+        display: none;
+    }
+    .pokedex-searchbar
+    {
+        width: 100%;
     }
 }
 

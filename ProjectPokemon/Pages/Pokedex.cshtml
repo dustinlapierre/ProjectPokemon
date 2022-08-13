@@ -4,15 +4,15 @@
     ViewData["Title"] = "Pokedex";
 }
 
-<div class="d-flex justify-content-center mb-5">
-    <div class="container-fluid padding bg-secondary w-75">
-        <div class="row px-3">
-            <div class="col-6">
-                <form class="d-flex padding mt-4" role="search" method="post">
-                    <input class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" />
-                    <button class="btn btn-warning" type="submit">Search</button>
-                </form>
-            </div>
+<div class="container-fluid pokedex-searchbar">
+    <div class="row px-1">
+        <form class="col-12 col-md-8 col-lg-8 d-flex padding mt-4" role="search" method="post">
+            <input class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" />
+            <button class="btn btn-light" type="submit">Search</button>
+        </form>
+        <div class="col-md-2 col-lg-1 d-flex ms-auto align-items-center pokedex-img">
+            <img src="~/images/pokeball_logo_white.png" alt="" class="ms-auto img-fluid pokedex-img" style="max-height:100px;">
         </div>
     </div>
+    <div class="row h-25" style="background-color: #3f3f3f;"></div>
 </div>
