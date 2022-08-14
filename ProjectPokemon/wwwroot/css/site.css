@@ -223,9 +223,28 @@ footer
     height: 100%;
     border-radius: 0 0 100% 0;
 }
+.data-slider 
+{
+    position: relative;
+    padding: 0px;
+    bottom: 63vh;
+}
+
+@keyframes slideout
+{
+    0%
+    {
+        bottom: calc(100% - 50px);
+    }
+    100%
+    {
+        bottom: 0px;
+    }
+}
 .data-window 
 {
     background-color: #3f3f3f;
+    text-align: center;
     min-height: 25px;
 }
 /*---Media Queries --*/
