@@ -8,8 +8,8 @@
     <!--Search Bar-->
     <div class="container-fluid pokedex-searchbar">
         <div class="row px-1">
-            <form class="col-12 col-md-8 col-lg-8 d-flex padding mt-4" role="search" method="POST">
-                <input name="pokemonSearch" class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" list="pokemon"/>
+            <form class="col-12 col-md-8 col-lg-8 d-flex padding mt-4" role="search" method="GET">
+                <input name="search" class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" />
                 <button class="btn btn-light" type="submit">Search</button>
             </form>
             <div class="col-md-2 col-lg-1 d-flex ms-auto align-items-center pokedex-img">
@@ -55,7 +55,7 @@
         $(document).ready(
             function()
             {
-                $('.data-slider').css('animation', 'slideout 2.5s 1 forwards');
+                $('.data-slider').css('animation', 'slideout 2s 1 forwards');
             });
     </script>
 }

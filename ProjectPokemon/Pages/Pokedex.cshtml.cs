@@ -13,15 +13,16 @@ namespace ProjectPokemon.Pages
         [BindProperty]
         public List<string>? pokemonNames { get; set; }
 
-        public void OnGet()
+
+        public void OnGet(string search)
         {
             //for autocomplete functionality
             //pokemonNames = await PokeApi.GetAllPokemonNames();
-        }
 
-        public void OnPost(string pokemonSearch)
-        {
-            var pokemonModel = PokeApi.GetPokemon(pokemonSearch).Result;
+            if (search == null)
+                return;
+
+            var pokemonModel = PokeApi.GetPokemon(search).Result;
             pokemon = new PokemonDTO();
 
             //manual model mapping, replace with automapper!
@@ -29,7 +30,7 @@ namespace ProjectPokemon.Pages
             pokemon.Id = pokemonModel.Id;
             pokemon.Img = pokemonModel.Sprites.Other.OfficialArtwork.FrontDefault;
 
-            foreach(var stat in pokemonModel.Stats)
+            foreach (var stat in pokemonModel.Stats)
             {
                 var mappedStat = new Stat()
                 {
