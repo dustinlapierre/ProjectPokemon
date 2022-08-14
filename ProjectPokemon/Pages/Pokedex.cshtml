@@ -6,8 +6,8 @@
 
 <div class="container-fluid pokedex-searchbar">
     <div class="row px-1">
-        <form class="col-12 col-md-8 col-lg-8 d-flex padding mt-4" role="search" method="post">
-            <input class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" />
+        <form class="col-12 col-md-8 col-lg-8 d-flex padding mt-4" role="search" method="POST">
+            <input name="pokemonSearch" class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" list="pokemon"/>
             <button class="btn btn-light" type="submit">Search</button>
         </form>
         <div class="col-md-2 col-lg-1 d-flex ms-auto align-items-center pokedex-img">
@@ -20,3 +20,21 @@
         <div class="wedge-right"></div>
     </div>
 </div>
+@if(Model.pokemon != null)
+{
+    <div>@Model.pokemon.Name</div>
+    <div>@Model.pokemon.Id</div>
+    <img src="@Model.pokemon.Img"/>
+    @foreach(var stat in @Model.pokemon.Stats)
+    {
+        <div>@stat.Name : @stat.BaseStat</div>
+    }
+    @foreach(var ability in @Model.pokemon.Abilities)
+    {
+        <a href="@ability.Url">@ability.Name</a>
+    }
+    @foreach(var type in @Model.pokemon.Types)
+    {
+        <div>@type</div>
+    }
+}

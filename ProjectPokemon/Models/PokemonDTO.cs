@@ -5,14 +5,9 @@ public class PokemonDTO
 {
     public string Name { get; set; }
     public int Id { get; set; }
-    public List<Ability> Abilities { get; set; }
-    public List<Type> Types { get; set; }
-    public int BaseHP { get; set; }
-    public int BaseAttack { get; set; }
-    public int BaseDefense { get; set; }
-    public int BaseSpAttack { get; set; }
-    public int BaseSpDefense { get; set; }
-    public int BaseSpeed { get; set; }
+    public List<Ability> Abilities { get; set; } = new List<Ability>();
+    public List<string> Types { get; set; } = new List<string>();
+    public List<Stat> Stats { get; set; } = new List<Stat>();
     public string Img { get; set; }
 }
 
@@ -22,7 +17,8 @@ public class Ability
     public string Url { get; set; }
 }
 
-public class Type
+public class Stat
 {
     public string Name { get; set; }
+    public int BaseStat { get; set; }
 }

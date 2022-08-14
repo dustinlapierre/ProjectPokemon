@@ -6,13 +6,6 @@ namespace PokeApiLibraryTests;
 public class UnitTest1
 {
     [Fact]
-    public void PokeApiLibrary_GetById_ReturnsSuccess()
-    {
-        var result = PokeApi.GetPokemon(4).Result;
-        Assert.Equal("charmander", result.Name);
-    }
-
-    [Fact]
     public void PokeApiLibrary_GetByNameLowerCase_ReturnsSuccess()
     {
         var result = PokeApi.GetPokemon("charmander").Result;

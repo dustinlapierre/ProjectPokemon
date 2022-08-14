@@ -10,28 +10,11 @@ namespace PokeApiLibrary;
 
 public static class PokeApi
 {
-    public static async Task<PokemonModel> GetPokemon(int id)
+    public static async Task<PokemonModel> GetPokemon(string query)
     {
         using (var client = new HttpClient())
         {
-            var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon/{id}");
-            var result = await client.GetAsync(endpoint);
-
-            var opt = new JsonSerializerOptions()
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            var pokemonModel = JsonSerializer.Deserialize<PokemonModel>(await result.Content.ReadAsStringAsync(), opt);
-            return pokemonModel;
-        }
-    }
-
-    public static async Task<PokemonModel> GetPokemon(string name)
-    {
-        using (var client = new HttpClient())
-        {
-            var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon/{name.ToLower()}");
+            var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon/{query.ToLower()}");
             var result = await client.GetAsync(endpoint);
 
             var opt = new JsonSerializerOptions()
