@@ -12,9 +12,12 @@
                 <input name="search" class="form-control me-2" typeof="search" placeholder="Pokemon Name or Number" aria-label="Search" list="pokemonList"/>
                 <datalist id="pokemonList">
                     <!-- Populate the data list with all pokemon names -->
-                    @foreach(var name in Model.pokemonNames)
+                    @if(Model.PokemonNames != null)
                     {
-                        <option value="@name"></option>
+                        foreach(var name in Model.PokemonNames)
+                        {
+                            <option value="@name"></option>
+                        }
                     }
                 </datalist>
                 <button class="btn btn-light" type="submit">Search</button>
@@ -29,20 +32,20 @@
     <div style="overflow:hidden;">
         <div class="container-fluid data-slider">
             <div class="container-fluid data-window">
-                @if(Model.pokemon != null)
+                @if(Model.Pokemon != null)
                 {
-                    <div>@Model.pokemon.Name</div>
-                    <div>@Model.pokemon.Id</div>
-                    <img src="@Model.pokemon.Img"/>
-                    @foreach(var stat in @Model.pokemon.Stats)
+                    <div>@Model.Pokemon.Name</div>
+                    <div>@Model.Pokemon.Id</div>
+                    <img src="@Model.Pokemon.Img"/>
+                    @foreach(var stat in @Model.Pokemon.Stats)
                     {
                         <div>@stat.Name : @stat.BaseStat</div>
                     }
-                    @foreach(var ability in @Model.pokemon.Abilities)
+                    @foreach(var ability in @Model.Pokemon.Abilities)
                     {
                         <a href="@ability.Url">@ability.Name</a>
                     }
-                    @foreach(var type in @Model.pokemon.Types)
+                    @foreach(var type in @Model.Pokemon.Types)
                     {
                         <div>@type</div>
                     }
@@ -56,7 +59,7 @@
     </div>
 </div>
 
-@if(Model.pokemon != null)
+@if(Model.Pokemon != null)
 {
     <script type="text/javascript">
         $(document).ready(
