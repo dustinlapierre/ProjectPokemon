@@ -14,15 +14,16 @@ namespace ProjectPokemon.Pages
         public List<string>? pokemonNames { get; set; }
 
 
-        public void OnGet(string search)
+        public async Task OnGet(string search)
         {
-            //for autocomplete functionality
-            pokemonNames = PokeApi.GetAllPokemonNames().Result;
+            //get list of names, bound to the suggestions for the searchbox
+            pokemonNames = await PokeApi.GetAllPokemonNames();
 
+            //there is no query string, so no need to make the API call
             if (search == null)
                 return;
 
-            var pokemonModel = PokeApi.GetPokemon(search).Result;
+            var pokemonModel = await PokeApi.GetPokemon(search);
             pokemon = new PokemonDTO();
 
             //manual model mapping, replace with automapper!

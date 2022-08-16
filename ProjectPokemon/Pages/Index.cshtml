@@ -1,4 +1,5 @@
 ﻿@page
+@using PokeApiLibrary
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -17,7 +18,10 @@
             <div class="carousel-caption">
                 <h1 class="display-2">Project Pokemon</h1>
                 <h3>A competitive Pokemon aid</h3>
-                <button type="button" class="btn btn-light btn-lg">Random</button>
+
+                @{ Random rnd = new Random(); }
+                <a asp-page="Pokedex" asp-route-search="@rnd.Next(PokeApi.GetAllPokemonNames().Result.Count)" type="button" class="btn btn-light btn-lg">Random</a>
+
                 <a type="button" class="btn btn-primary btn-lg" asp-area="" asp-page="/Pokedex">PokeDex</a>
             </div>
         </div>
@@ -123,7 +127,7 @@
                     <p class="card-text">
                         There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.
                     </p>
-                    <a class="btn btn-outline-secondary">See Entry</a>
+                    <a asp-page="Pokedex" asp-route-search="bulbasaur" class="btn btn-outline-secondary">See Entry</a>
                 </div>
             </div>
         </div>
@@ -147,7 +151,7 @@
                     <p class="card-text">
                         When it retracts its long neck into its shell, it squirts out water with vigorous force. 
                     </p>
-                    <a class="btn btn-outline-secondary">See Entry</a>
+                    <a asp-page="Pokedex" asp-route-search="squirtle" class="btn btn-outline-secondary">See Entry</a>
                 </div>
             </div>
         </div>
@@ -161,9 +165,9 @@
             <h2>Connect</h2>
         </div>
         <div class="col-12 social padding">
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://twitter.com/justaHermit"><i class="fab fa-twitter"></i></a>
             <a href="https://github.com/dustinlapierre/ProjectPokemon"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="https://www.pokemon.com/us/"><i class="fab fa-google"></i></a>
         </div>
     </div>
 </div>
