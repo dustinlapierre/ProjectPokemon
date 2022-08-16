@@ -195,6 +195,13 @@ footer
     padding: 0;
     padding-bottom: 1rem;
 }
+.pokedex-img 
+{
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    margin-left: auto;
+}
 .pokedex-searchbar 
 {
     background-color: #E4000F;
@@ -227,20 +234,14 @@ footer
 {
     position: relative;
     padding: 0px;
-    bottom: 63vh;
+    transform: translateY(-95%);
+    transition: transform 1.5s;
+}
+.open
+{
+    transform: translateY(0);
 }
 
-@keyframes slideout
-{
-    0%
-    {
-        bottom: calc(100% - 50px);
-    }
-    100%
-    {
-        bottom: 0px;
-    }
-}
 .data-window 
 {
     background-color: #3f3f3f;
@@ -248,9 +249,42 @@ footer
     min-height: 25px;
 }
 
-/*---Media Queries --*/
-@media (max-width: 992px) 
+.pokemon-image-circle 
 {
+    border-radius: 50%;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    border: 8px solid black;
+    background: #E4000F;
+    background-image: url("/images/pokeball_logo_white.png");
+    background-position: center;
+    background-size: 121%;
+    box-shadow: inset 0px -50px 50px 50px rgba(0, 30, 130, 0.2);
+}
+
+.pokemon-portrait
+{
+    position:absolute;
+    width: 80%;
+    left: 10%;
+    top: 10%;
+}
+
+.pokemon-shadow {
+    position: absolute;
+    width: 60%;
+    height: 15%;
+    top: 75%;
+    left: 20%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*---Media Queries --*/
+@media (max-width: 992px) {
     .social a
     {
         font-size: 4em;

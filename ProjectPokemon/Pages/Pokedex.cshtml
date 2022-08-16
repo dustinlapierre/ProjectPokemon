@@ -22,36 +22,51 @@
                 </datalist>
                 <button class="btn btn-light" type="submit">Search</button>
             </form>
-            <div class="col-md-2 col-lg-1 d-flex ms-auto align-items-center pokedex-img">
-                <img src="~/images/pokeball_logo_white.png" alt="" class="ms-auto img-fluid pokedex-img" style="max-height:100px;">
-            </div>
+            <img src="~/images/pokeball_logo_white.png" alt="" class="pokedex-img"/>
         </div>
     </div>
 
     <!--Data Window-->
     <div style="overflow:hidden;">
         <div class="container-fluid data-slider">
-            <div class="container-fluid data-window">
+            <div class="row data-window p-5">
                 @if(Model.Pokemon != null)
                 {
-                    <div>@Model.Pokemon.Name</div>
-                    <div>@Model.Pokemon.Id</div>
-                    <img src="@Model.Pokemon.Img"/>
-                    @foreach(var stat in @Model.Pokemon.Stats)
-                    {
-                        <div>@stat.Name : @stat.BaseStat</div>
-                    }
-                    @foreach(var ability in @Model.Pokemon.Abilities)
-                    {
-                        <a href="@ability.Url">@ability.Name</a>
-                    }
-                    @foreach(var type in @Model.Pokemon.Types)
-                    {
-                        <div>@type</div>
-                    }
+                    <div class="col-12 col-lg-5 mb-2 my-lg-0">
+                        <div class="pokemon-image-circle">
+                            <div class="pokemon-shadow"></div>
+                            <img class="img-fluid pokemon-portrait" src="@Model.Pokemon.Img"/>
+                        </div>
+                        <div>
+                            @Model.Pokemon.Name
+                            @Model.Pokemon.Id
+                            @foreach(var type in @Model.Pokemon.Types)
+                            {
+                                @type
+                            }
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-7 px-0 ps-lg-3" style="display:flex;flex-direction:column;">
+                        <div class="bg-light mb-2" style="flex:1;">
+                            <h2>Abilities</h2>
+                            <div>
+                                @foreach(var ability in @Model.Pokemon.Abilities)
+                                {
+                                    <a href="@ability.Url">@ability.Name</a>
+                                }
+                            </div>
+                        </div>
+                        <div class="bg-light" style="flex:1;">
+                            <h2>Base Stats</h2>
+                            @foreach(var stat in @Model.Pokemon.Stats)
+                            {
+                                <div>@stat.Name : @stat.BaseStat</div>
+                            }
+                        </div>
+                    </div>
                 }
             </div>
-            <div class="row w-25 mx-auto wedge-parent">
+            <div class="w-25 mx-auto wedge-parent">
                 <div class="wedge-left"></div>
                 <div class="wedge-right"></div>
             </div>
@@ -65,7 +80,7 @@
         $(document).ready(
             function()
             {
-                $('.data-slider').css('animation', 'slideout 2s 1 forwards');
+                $('.data-slider').toggleClass("open");
             });
     </script>
 }
@@ -73,5 +88,6 @@ else
 {
     <script type="text/javascript">
         $('.data-slider').css('bottom', '0px');
+        $('.data-slider').css('transition', '0s');
     </script>
 }
