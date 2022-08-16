@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Globalization
 @model ProjectPokemon.Pages.PokedexModel
 @{
     ViewData["Title"] = "Pokedex";
@@ -27,27 +28,30 @@
     </div>
 
     <!--Data Window-->
+    @{var textFormatter = new CultureInfo("en-US", false).TextInfo;}
     <div style="overflow:hidden;">
         <div class="container-fluid data-slider">
             <div class="row data-window p-5">
                 @if(Model.Pokemon != null)
                 {
-                    <div class="col-12 col-lg-5 mb-2 my-lg-0">
+                    <div class="col-12 col-lg-5 mb-2 my-lg-0 text-light">
                         <div class="pokemon-image-circle">
                             <div class="pokemon-shadow"></div>
+                            <div class="pokemon-number">@Model.Pokemon.Id</div>
                             <img class="img-fluid pokemon-portrait" src="@Model.Pokemon.Img"/>
                         </div>
                         <div>
-                            @Model.Pokemon.Name
-                            @Model.Pokemon.Id
-                            @foreach(var type in @Model.Pokemon.Types)
-                            {
-                                @type
-                            }
+                            <h1>@textFormatter.ToTitleCase(Model.Pokemon.Name)</h1>
+                                <div>
+                                    @foreach(var type in @Model.Pokemon.Types)
+                                    {
+                                        <span class="pokemon-type">@type</span>
+                                    }
+                                </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-7 px-0 ps-lg-3" style="display:flex;flex-direction:column;">
-                        <div class="bg-light mb-2" style="flex:1;">
+                        <div class="bg-dark mb-2 rounded text-light" style="flex:1;">
                             <h2>Abilities</h2>
                             <div>
                                 @foreach(var ability in @Model.Pokemon.Abilities)
@@ -56,7 +60,7 @@
                                 }
                             </div>
                         </div>
-                        <div class="bg-light" style="flex:1;">
+                        <div class="bg-dark rounded text-light" style="flex:1;">
                             <h2>Base Stats</h2>
                             @foreach(var stat in @Model.Pokemon.Stats)
                             {
@@ -87,7 +91,7 @@
 else
 {
     <script type="text/javascript">
-        $('.data-slider').css('bottom', '0px');
-        $('.data-slider').css('transition', '0s');
+        $('.data-slider').css('transform', 'translateY(-60px)');
+        $('.data-slider').css('transition', 'none');
     </script>
 }
