@@ -17,7 +17,7 @@ namespace ProjectPokemon.Pages
         public void OnGet(string search)
         {
             //for autocomplete functionality
-            //pokemonNames = await PokeApi.GetAllPokemonNames();
+            pokemonNames = PokeApi.GetAllPokemonNames().Result;
 
             if (search == null)
                 return;

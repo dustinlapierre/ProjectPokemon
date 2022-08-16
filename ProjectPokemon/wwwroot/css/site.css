@@ -247,6 +247,7 @@ footer
     text-align: center;
     min-height: 25px;
 }
+
 /*---Media Queries --*/
 @media (max-width: 992px) 
 {
