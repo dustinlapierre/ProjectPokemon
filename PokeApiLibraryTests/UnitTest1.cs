@@ -1,4 +1,4 @@
-using PokeApiLibrary;
+﻿using PokeApiLibrary;
 using Xunit;
 
 namespace PokeApiLibraryTests;
@@ -24,6 +24,15 @@ public class UnitTest1
     {
         var result = PokeApi.GetPokemon("SQUIRTLE").Result;
         Assert.Equal(7, result.Id);
+    }
+
+    [Fact]
+    public void PokeApiLibrary_GetAbilityDesc_ReturnsSuccess()
+    {
+        var result = PokeApi.GetAbilityDescription("battle-armor").Result;
+        Assert.Equal("Moves cannot score critical hits against this Pokémon. This ability functions identically to shell armor.", result);
+        result = PokeApi.GetAbilityDescription("own-tempo").Result;
+        Assert.Equal("This Pokémon cannot be confused. If a Pokémon is confused and acquires this ability, its confusion will immediately be healed.", result);
     }
 
     [Fact]

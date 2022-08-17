@@ -45,5 +45,27 @@ public static class PokeApi
             }
         }
     }
+
+    //pass in ability name as displayed in PokeApi (ex. serene-grace)
+    public static async Task<string> GetAbilityDescription(string abilityName)
+    {
+        using (var client = new HttpClient())
+        {
+            var endpoint = new Uri($"https://pokeapi.co/api/v2/ability/{abilityName}");
+            var result = await client.GetAsync(endpoint);
+
+            using (JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
+            {
+                foreach (var element in jsonDocument.RootElement.GetProperty("effect_entries").EnumerateArray())
+                {
+                    if(element.GetProperty("language").GetProperty("name").ToString() == "en")
+                    {
+                        return element.GetProperty("effect").ToString().Replace("\n\n", " ");
+                    }
+                }
+            }
+        }
+        return "Description not found!";
+    }
 }
 

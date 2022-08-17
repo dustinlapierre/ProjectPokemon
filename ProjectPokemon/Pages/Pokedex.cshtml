@@ -1,5 +1,6 @@
 ﻿@page
 @using System.Globalization
+@using PokeApiLibrary
 @model ProjectPokemon.Pages.PokedexModel
 @{
     ViewData["Title"] = "Pokedex";
@@ -56,19 +57,28 @@
                     <div class="col-12 col-lg-7 px-0 ps-lg-3" style="display:flex;flex-direction:column;">
                         <div class="bg-dark mb-2 rounded text-light" style="flex:1;">
                             <h2>Abilities</h2>
-                            <div>
+                            <div class="text-start p-4">
                                 @foreach(var ability in @Model.Pokemon.Abilities)
                                 {
-                                    <a href="@ability.Url">@ability.Name</a>
+                                    var abilityName = textFormatter.ToTitleCase(ability.Name.Replace("-", " "));
+                                    var abilityDesc = await PokeApi.GetAbilityDescription(ability.Name);
+                                    <h5 class="text-light"><span class="text-info fw-bolder">@abilityName</span> : @abilityDesc</h5>
                                 }
                             </div>
                         </div>
-                        <div class="bg-dark rounded text-light" style="flex:1;">
+                        <div class="bg-dark rounded text-light pb-4" style="flex:1;">
                             <h2>Base Stats</h2>
-                            @foreach(var stat in @Model.Pokemon.Stats)
-                            {
-                                <div>@stat.Name : @stat.BaseStat</div>
-                            }
+                            <div class="d-flex flex-column justify-content-between">
+                                @foreach(var stat in @Model.Pokemon.Stats)
+                                {
+                                    <span>@stat.Name</span>
+                                    <div class="progress m-auto" style="width:85%;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:@(stat.BaseStat/255.0 * 100.0)%;"
+                                        aria-label="Basic example" aria-valuenow="@stat.BaseStat" 
+                                        aria-valuemin="0" aria-valuemax="255"></div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 }
