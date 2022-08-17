@@ -71,11 +71,11 @@
                             <div class="d-flex flex-column justify-content-between">
                                 @foreach(var stat in @Model.Pokemon.Stats)
                                 {
-                                    <span>@stat.Name</span>
+                                    <span>@textFormatter.ToTitleCase(stat.Name.Replace("-", " "))</span>
                                     <div class="progress m-auto" style="width:85%;">
                                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:@(stat.BaseStat/255.0 * 100.0)%;"
                                         aria-label="Basic example" aria-valuenow="@stat.BaseStat" 
-                                        aria-valuemin="0" aria-valuemax="255"></div>
+                                        aria-valuemin="0" aria-valuemax="255">@stat.BaseStat</div>
                                     </div>
                                 }
                             </div>
