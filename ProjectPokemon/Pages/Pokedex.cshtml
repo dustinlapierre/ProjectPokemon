@@ -34,7 +34,7 @@
             <div class="row data-window p-5">
                 @if(Model.Pokemon != null)
                 {
-                    <div class="col-12 col-lg-5 mb-2 my-lg-0 text-light">
+                    <div class="col-12 col-lg-5 mb-4 mb-lg-0 text-light">
                         <div class="pokemon-image-circle">
                             <div class="pokemon-shadow"></div>
                             <div class="pokemon-number">@Model.Pokemon.Id</div>
@@ -45,7 +45,10 @@
                                 <div>
                                     @foreach(var type in @Model.Pokemon.Types)
                                     {
-                                        <span class="pokemon-type">@type</span>
+                                        //Get color from dictionary or default
+                                        var typeColor = Model.TypeColors.TryGetValue(type, out var value) ? value : "#000";
+                                        //create type span using that color as the bg
+                                        <span class="pokemon-type" style="background:@typeColor">@type</span>
                                     }
                                 </div>
                         </div>
