@@ -12,59 +12,78 @@ public static class PokeApi
 {
     public static async Task<PokemonModel> GetPokemon(string query)
     {
-        using (var client = new HttpClient())
+        try
         {
-            var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon/{query.ToLower()}");
-            var result = await client.GetAsync(endpoint);
-
-            var opt = new JsonSerializerOptions()
+            using (var client = new HttpClient())
             {
-                PropertyNameCaseInsensitive = true
-            };
+                var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon/{query.ToLower()}");
+                var result = await client.GetAsync(endpoint);
 
-            var pokemonModel = JsonSerializer.Deserialize<PokemonModel>(await result.Content.ReadAsStringAsync(), opt);
-            return pokemonModel;
+                var opt = new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var pokemonModel = JsonSerializer.Deserialize<PokemonModel>(await result.Content.ReadAsStringAsync(), opt);
+                return pokemonModel;
+            }
+        }
+        catch (Exception ex)
+        {
+            return null;
         }
     }
 
     public static async Task<List<string>> GetAllPokemonNames()
     {
-        using (var client = new HttpClient())
+        try
         {
-            var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon?limit=9999");
-            var result = await client.GetAsync(endpoint);
-
-            using(JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
+            using (var client = new HttpClient())
             {
-                var pokemonNameList = new List<string>();
-                foreach (var element in jsonDocument.RootElement.GetProperty("results").EnumerateArray())
+                var endpoint = new Uri($"https://pokeapi.co/api/v2/pokemon?limit=9999");
+                var result = await client.GetAsync(endpoint);
+
+                using(JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
                 {
-                    pokemonNameList.Add(element.GetProperty("name").ToString());
+                    var pokemonNameList = new List<string>();
+                    foreach (var element in jsonDocument.RootElement.GetProperty("results").EnumerateArray())
+                    {
+                        pokemonNameList.Add(element.GetProperty("name").ToString());
+                    }
+                    return pokemonNameList;
                 }
-                return pokemonNameList;
             }
+        }
+        catch(Exception ex)
+        {
+            return new List<string>();
         }
     }
 
     //pass in ability name as displayed in PokeApi (ex. serene-grace)
     public static async Task<string> GetAbilityDescription(string abilityName)
     {
-        using (var client = new HttpClient())
+        try
         {
-            var endpoint = new Uri($"https://pokeapi.co/api/v2/ability/{abilityName}");
-            var result = await client.GetAsync(endpoint);
-
-            using (JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
+            using (var client = new HttpClient())
             {
-                foreach (var element in jsonDocument.RootElement.GetProperty("effect_entries").EnumerateArray())
+                var endpoint = new Uri($"https://pokeapi.co/api/v2/ability/{abilityName}");
+                var result = await client.GetAsync(endpoint);
+
+                using (JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
                 {
-                    if(element.GetProperty("language").GetProperty("name").ToString() == "en")
+                    foreach (var element in jsonDocument.RootElement.GetProperty("effect_entries").EnumerateArray())
                     {
-                        return element.GetProperty("effect").ToString().Replace("\n\n", " ");
+                        if (element.GetProperty("language").GetProperty("name").ToString() == "en")
+                        {
+                            return element.GetProperty("effect").ToString().Replace("\n\n", " ");
+                        }
                     }
                 }
             }
         }
+        catch (Exception ex) { };
+
         return "Description not found!";
     }
 }

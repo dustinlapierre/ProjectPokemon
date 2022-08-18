@@ -20,7 +20,7 @@
                 <h3>A competitive Pokemon aid</h3>
 
                 @{ Random rnd = new Random(); }
-                <a asp-page="Pokedex" asp-route-search="@rnd.Next(PokeApi.GetAllPokemonNames().Result.Count)" type="button" class="btn btn-light btn-lg">Random</a>
+                <a asp-page="Pokedex" asp-route-search="@rnd.Next(898)" type="button" class="btn btn-light btn-lg">Random</a>
 
                 <a type="button" class="btn btn-primary btn-lg" asp-area="" asp-page="/Pokedex">PokeDex</a>
             </div>

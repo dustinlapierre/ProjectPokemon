@@ -35,16 +35,19 @@ namespace ProjectPokemon.Pages
         };
 
 
-        public async Task OnGet(string search)
+        public async Task<IActionResult> OnGet(string search)
         {
             //get list of names, bound to the suggestions for the searchbox
             PokemonNames = await PokeApi.GetAllPokemonNames();
 
             //there is no query string, so no need to make the API call
             if (search == null)
-                return;
+                return Page();
 
             var pokemonModel = await PokeApi.GetPokemon(search);
+            if (pokemonModel == null)
+                return RedirectToPage("Errors/404");
+
             Pokemon = new PokemonDTO();
 
             //manual model mapping, replace with automapper!
@@ -74,6 +77,8 @@ namespace ProjectPokemon.Pages
 
             foreach (var type in pokemonModel.Types)
                 Pokemon.Types.Add(type.Type.Name);
+
+            return Page();
         }
     }
 }
