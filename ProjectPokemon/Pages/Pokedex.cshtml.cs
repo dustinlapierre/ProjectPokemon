@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PokeApiLibrary;
@@ -33,6 +34,12 @@ namespace ProjectPokemon.Pages
             {"steel", "#B7B7CE" },
             {"fairy", "#D685AD" }
         };
+        private readonly IMapper _mapper;
+
+        public PokedexModel(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
 
         public async Task<IActionResult> OnGet(string search)
@@ -48,35 +55,8 @@ namespace ProjectPokemon.Pages
             if (pokemonModel == null)
                 return RedirectToPage("Errors/404");
 
-            Pokemon = new PokemonDTO();
-
-            //manual model mapping, replace with automapper!
-            Pokemon.Name = pokemonModel.Name;
-            Pokemon.Id = pokemonModel.Id;
-            Pokemon.Img = pokemonModel.Sprites.Other.OfficialArtwork.FrontDefault;
-
-            foreach (var stat in pokemonModel.Stats)
-            {
-                var mappedStat = new Stat()
-                {
-                    Name = stat.Stat.Name,
-                    BaseStat = stat.BaseStat
-                };
-                Pokemon.Stats.Add(mappedStat);
-            }
-
-            foreach (var ability in pokemonModel.Abilities)
-            {
-                var mappedAbility = new Ability()
-                {
-                    Name = ability.Ability.Name,
-                    Url = ability.Ability.Url
-                };
-                Pokemon.Abilities.Add(mappedAbility);
-            }
-
-            foreach (var type in pokemonModel.Types)
-                Pokemon.Types.Add(type.Type.Name);
+            //Map Business model to UI Model
+            Pokemon = _mapper.Map<PokemonDTO>(pokemonModel);
 
             return Page();
         }
