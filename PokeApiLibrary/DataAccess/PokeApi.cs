@@ -72,11 +72,20 @@ public static class PokeApi
 
                 using (JsonDocument jsonDocument = JsonDocument.Parse(await result.Content.ReadAsStringAsync()))
                 {
+                    //check effect entries for english entry
                     foreach (var element in jsonDocument.RootElement.GetProperty("effect_entries").EnumerateArray())
                     {
                         if (element.GetProperty("language").GetProperty("name").ToString() == "en")
                         {
                             return element.GetProperty("effect").ToString().Replace("\n\n", " ");
+                        }
+                    }
+                    //check flavor text for english entry (sometimes a move hasn't been given an effect desc in the API)
+                    foreach (var element in jsonDocument.RootElement.GetProperty("flavor_text_entries").EnumerateArray())
+                    {
+                        if (element.GetProperty("language").GetProperty("name").ToString() == "en")
+                        {
+                            return element.GetProperty("flavor_text").ToString().Replace("\n\n", " ");
                         }
                     }
                 }
